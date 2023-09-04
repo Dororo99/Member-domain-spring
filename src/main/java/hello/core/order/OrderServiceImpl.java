@@ -16,7 +16,7 @@ public class OrderServiceImpl implements OrderService {
     // 로미오 역할을 하는 디카프리오 구현체가 줄리엣 역할을 하는 여자 주인공 구현체를 직접 초빙하는 것과 마찬가지!
 
     // DIP 위반을 막자
-    private final DiscountPolicy discountPolicy; // interface에만 의존함
+    private final DiscountPolicy discountPolicy; // interface에만 의존함 -> DIP (0)
     private final MemberRepository memberRepository;
 
     public OrderServiceImpl(DiscountPolicy discountPolicy, MemberRepository memberRepository) {
