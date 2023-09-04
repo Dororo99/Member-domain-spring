@@ -8,21 +8,28 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+// Spring으로 변경해보자
+@Configuration
 public class AppConfig {
+    @Bean
     // 공연기획자
     // 배우를 교체하는 역할을 한다!
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     } // 의존관계 주입
 
-    private static MemoryMemberRepository memberRepository() {
+    @Bean
+    public static MemoryMemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
- 
+    @Bean
     public OrderService orderService() {
         return new OrderServiceImpl(discountPolicy(), memberRepository());
     } // OrderServiceImpl을 여기서 호출 함으로써 공연 기획자만 코드를 교체해주면 된다
+    @Bean
     public DiscountPolicy discountPolicy() {
 //        return new FixDiscountPolicy();
         return new RateDiscountPolicy();
