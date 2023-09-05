@@ -4,9 +4,12 @@ import hello.core.AppConfig;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberServiceImpl;
 import hello.core.order.OrderServiceImpl;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class ConfigurationSingletonTest {
     @Test
@@ -23,5 +26,9 @@ public class ConfigurationSingletonTest {
         System.out.println("memberService --> memberRepository1 = " + memberRepository1);
         System.out.println("orderService --> memberRepository2 = " + memberRepository2);
         System.out.println("memberRepository2 = " + memberRepository);
+        // 3개 모두 같은 객체를 공유한다
+
+        assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
+        assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
     }
 }
