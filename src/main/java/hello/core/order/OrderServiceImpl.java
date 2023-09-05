@@ -16,10 +16,10 @@ public class OrderServiceImpl implements OrderService {
     // 로미오 역할을 하는 디카프리오 구현체가 줄리엣 역할을 하는 여자 주인공 구현체를 직접 초빙하는 것과 마찬가지!
 
     // DIP 위반을 막자
-    private final DiscountPolicy discountPolicy; // interface에만 의존함 -> DIP (0)
     private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy; // interface에만 의존함 -> DIP (0)
 
-    public OrderServiceImpl(DiscountPolicy discountPolicy, MemberRepository memberRepository) {
+    public OrderServiceImpl(MemberRepository memberRepository,DiscountPolicy discountPolicy) {
         this.discountPolicy = discountPolicy;
         this.memberRepository = memberRepository;
     } // 생성자 만들어주자
@@ -31,5 +31,10 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice); // 할인을 어떻게 할 지는 몰라~ 그냥 알아서 결과를 던져줘 -> SRP 잘 지킴!!!
         // member를 넘길지, grade를 넘길지도 고민해보자!
         return new Order(memberId, itemName, itemPrice, discountPrice);
+    }
+
+    //TEST 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
