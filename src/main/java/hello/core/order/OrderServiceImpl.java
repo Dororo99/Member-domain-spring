@@ -5,8 +5,11 @@ import hello.core.discount.DiscountPolicy;
 //import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-//import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+//import hello.core.member.MemoryMemberRepository;
+@Component
 public class OrderServiceImpl implements OrderService {
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
 //    //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 얘를 Rate로 바꿔줘야함
@@ -19,6 +22,7 @@ public class OrderServiceImpl implements OrderService {
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy; // interface에만 의존함 -> DIP (0)
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository,DiscountPolicy discountPolicy) {
         this.discountPolicy = discountPolicy;
         this.memberRepository = memberRepository;
