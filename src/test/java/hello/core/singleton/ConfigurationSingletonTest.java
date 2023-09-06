@@ -31,4 +31,15 @@ public class ConfigurationSingletonTest {
         assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
         assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
     }
+    @Test
+    void configurationDeep() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig bean = ac.getBean(AppConfig.class);
+        // 얘도 스프링 빈으로 등록된다!
+        // AppConfig를 임의로 상속 받아 클래스를 하나 만들고 스프링 컨테이너에 임의로 등록해버림! -> 얘가 싱글톤 보장!
+        // 상속 받은 클래스는 AppConfig@CGLIB
+        System.out.println("bean = " + bean.getClass());
+        // @Configuration이 없으면 CGLIB로부터 생성 x
+        // 이렇게 되면 다른 싱글톤이 고장남
+    }
 }

@@ -8,6 +8,7 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,7 +35,6 @@ public class AppConfig {
     //call AppConfig.memberRepository
     //call AppConfig.orderService
     // 싱글톤을 어떻게든 보장해준다
-
     @Bean
     // 공연기획자
     // 배우를 교체하는 역할을 한다!
