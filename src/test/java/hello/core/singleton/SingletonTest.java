@@ -26,7 +26,6 @@ public class SingletonTest {
 
         // memberService1 != memberService2
         assertThat(memberService1).isNotSameAs(memberService2);
-
     }
 
     @Test

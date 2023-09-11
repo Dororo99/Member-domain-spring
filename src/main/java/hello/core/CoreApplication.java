@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // client -> MemberServiceImpl -> MemoryMemberRepository
 
-@SpringBootApplication
+@SpringBootApplication // spring boot 사용하면 자동으로 project root 하위를 scan한다
 public class CoreApplication {
 
 	public static void main(String[] args) {
